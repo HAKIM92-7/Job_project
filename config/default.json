@@ -1,0 +1,7 @@
+{
+    "MONGOURI":"mongodb+srv://khira-me:meet@2021!@cluster0.v0bbe.mongodb.net/job-board?retryWrites=true&w=majority" ,
+    "jwtSecret" : "khira"
+
+
+
+}
