@@ -5,6 +5,7 @@ const connectDB = require ("./config/connect")
 const entrepriseRouter = require ('./routes/api/entreprise')
 const candidatRouter = require ('./routes/api/candidat')
 const loginRouter = require ('./routes/api/login')
+const profile_entreprise = require ('./routes/api/profil_entreprise')
 
 
 app.use(express.json())
@@ -14,7 +15,7 @@ connectDB()
 app.use('/api/candidat' , candidatRouter)
 app.use('/api/entreprise' , entrepriseRouter)
 app.use ('/api/login' , loginRouter)
-
+app.use ('/api/profile_entreprise' , profile_entreprise)
 // Création du serveur 
 app.listen (port, err => {
 if (err) console.log ('server error')
