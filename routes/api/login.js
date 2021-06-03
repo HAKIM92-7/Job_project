@@ -58,14 +58,10 @@ router.post(
           .json({ errors: [{ msg: 'email ou mot de passe incorrect' }] });
       }
 
-      const payload = {
-        entreprise: {
-          id: entreprise.id
-        }
-      };
+  
 
       jwt.sign(
-        payload,
+        {id : entreprise._id},
         config.get('jwtSecret'),
         { expiresIn: '5 days' },
         (err, token) => {
@@ -138,14 +134,9 @@ router.get('/candidat', auth, async (req, res) => {
             .json({ errors: [{ msg: 'email ou mot de passe incorrect' }] });
         }
   
-        const payload = {
-          candidat: {
-            id: candidat.id
-          }
-        };
-  
+   
         jwt.sign(
-          payload,
+          {id : candidat._id},
           config.get('jwtSecret'),
           { expiresIn: '5 days' },
           (err, token) => {

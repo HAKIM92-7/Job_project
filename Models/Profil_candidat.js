@@ -14,7 +14,7 @@ const profil_candidat_Schema = new schema ( {
 
       } , 
 
-    etat_civile : {
+    etat_civile: {
 
       type : String , 
       required : true 
@@ -41,7 +41,7 @@ region : {
         type : String , 
         required : true } ,
 
-            dernier_diplome_obtenue : {
+            dernier_diplome_obtenu : {
                 type : String , 
                 required : true 
                 
@@ -62,22 +62,22 @@ region : {
                         required : true 
                         
                         } ,
-                    experience_professionelle :  [
+                    experiences_professionelles :  [
                         {
                           titre: {
                             type: String,
-                            required: true
+                            
                           },
                           societe: {
-                            type: String,
-                            required: true
+                            type: String
+                            
                           },
                           location: {
                             type: String
                           },
                           from: {
                             type: Date,
-                            required: true
+                          
                           },
                           to: {
                             type: Date
@@ -101,4 +101,4 @@ region : {
  })
 
 
- module.exports = mongoose.model('profil' ,  profil_candidat_Schema)
+ module.exports = mongoose.model('profil_candidat' ,  profil_candidat_Schema)

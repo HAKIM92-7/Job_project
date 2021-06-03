@@ -63,14 +63,9 @@ try {
 
       await newEntreprise.save();
 
-      const payload = {
-        entreprise: {
-          id: newEntreprise.id
-        }
-      };
-
+  
       jwt.sign(
-        payload,
+        {id : newEntreprise._id} , 
         config.get('jwtSecret'),
         { expiresIn: '5 days' },
         (err, token) => {
@@ -143,7 +138,7 @@ router.get ('/:id' ,auth ,async (req,res) => {
     
   const entreprise= await Entreprise.find({_id : req.params.id})
   
-  if(!entreprise) res.status(400).json({errors :[{msg : "pas de candidats trouvés"}] })
+  if(!entreprise) res.status(400).json({errors :[{msg : "pas d'entreprise trouvée"}] })
   
   
   

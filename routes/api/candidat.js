@@ -65,14 +65,10 @@ try {
 
       await newCandidat.save();
 
-      const payload = {
-        candidat: {
-          id: newCandidat.id
-        }
-      };
+   
 
       jwt.sign(
-        payload,
+        {id : newCandidat._id},
         config.get('jwtSecret'),
         { expiresIn: '5 days' },
         (err, token) => {

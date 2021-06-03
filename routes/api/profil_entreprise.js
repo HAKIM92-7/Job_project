@@ -12,7 +12,7 @@ const fs= require('fs');
 // @desc   current entreprise profile
 // @access Private
 
-router.get('/', auth, async function (req, res) {
+router.get('/me', auth, async function (req, res) {
   try {
     const profile = await Profile.findOne({
       entreprise : req.user.id
@@ -80,14 +80,14 @@ try {
           { $set: profileFields },
           { new: true }
         );
-        return res.json(profile);
+        return res.json({msg:"profile updated" , profile});
       }
 
       profile = new Profile(profileFields);
 
       await profile.save();
 
-      return res.json(profile);
+      return res.json({msg : "profile added" , profile});
     } catch (err) {
       console.error(err.message);
       return res.status(500).send('server Error');
@@ -156,7 +156,7 @@ router.get('/', async (req, res) => {
   try {
     let profiles = await Profile.find()
 
-    return res.json(profiles);
+    return res.json({msg : "all profiles" , profiles});
   } catch (err) {
     console.error(err.message);
     return res.status(500).send('error server');
@@ -194,18 +194,18 @@ router.get('/:entreprise_id', async (req, res) => {
 // @desc   Delete a profile and company
 // @access Private
 
-router.delete('/', auth, async (req, res) => {
+router.delete('/',auth, async (req, res) => {
   try {
     // await Product.deleteMany({ seller: req.user.id });
     // remove profile
     await Profile.findOneAndDelete({ entreprise: req.user.id });
-
-    // remove user
+    
+    //remove entreprise
     await Entreprise.findByIdAndDelete({ _id: req.user.id });
     return res.json({ msg: 'Entreprise & Profile supprimés' });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('server error');
+    return res.status(500).send('server error');
   }
 });
 
