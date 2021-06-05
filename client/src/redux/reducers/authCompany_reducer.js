@@ -4,7 +4,7 @@ from '../actions/actionTypes'
 
 const initialState = {
 
-token : localStorage.getItem('token') ,
+token : localStorage.getItem('company-token') ,
 company : null ,
 isAuth : false ,
 
@@ -22,11 +22,11 @@ switch(type) {
 case REGISTER_COMPANY_SUCCESS: 
 case LOGIN_COMPANY_SUCCESS : 
 
-localStorage.setItem('token' , payload.token)
+localStorage.setItem('company-token' , payload.token)
 
 return {...state , token : payload.token , company : payload.entreprise , isAuth : true }
 
-case LOGOUT_COMPANY : localStorage.removeItem('token')
+case LOGOUT_COMPANY : localStorage.removeItem('company-token')
 
 return {...state , token : null , company : null , isAuth : false}
 

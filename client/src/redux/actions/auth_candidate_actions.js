@@ -2,9 +2,11 @@
 import { REGISTER_CANDIDATE_SUCCESS , REGISTER_CANDIDATE_FAIL , 
     LOGIN_CANDIDATE_SUCCESS ,LOGIN_CANDIDATE_FAIL,
      LOGOUT_CANDIDATE ,LOAD_CANDIDATE,
-      LOAD_CANDIDATE_FAIL} from './actionsTypes'
+      LOAD_CANDIDATE_FAIL} from './actionTypes'
 
 import axios from 'axios'
+import {setAlert} from './alertActions'
+import { logoutCompany } from './auth_company_actions'
 
 
 
@@ -35,6 +37,14 @@ dispatch({type : LOGIN_CANDIDATE_SUCCESS, payload : res.data})
 
 })
 .catch((err) => {
+
+    const errors = err.response.data.errors;
+    console.log(errors);
+    if (errors) {
+      errors.forEach((error) => {
+        dispatch(setAlert(error.msg, 'danger', 5000));
+      });
+    }
 
 dispatch({type : LOGIN_CANDIDATE_FAIL})
 console.log(err)
@@ -72,7 +82,7 @@ console.log(err)}
 
 const tokenConfig = (getState) => {
 
-const token = getState().auth.token
+const candidate_token = getState().authCandidate.token
 
 const config = {
 
@@ -81,9 +91,9 @@ headers : {
     'Content-type' : 'application/json'
 }}
 
-if(token) {
+if(candidate_token) {
 
-config.headers['token'] = token ;
+config.headers['token'] = candidate_token ;
 
 }
 

@@ -6,7 +6,7 @@ import {REGISTER_CANDIDATE_SUCCESS ,
 
 const initialState = {
 
-token : localStorage.getItem('token') ,
+token : localStorage.getItem('candidate-token') ,
 candidate : null ,
 isAuth : false ,
 
@@ -24,11 +24,11 @@ switch(type) {
 case REGISTER_CANDIDATE_SUCCESS: 
 case LOGIN_CANDIDATE_SUCCESS : 
 
-localStorage.setItem('token' , payload.token)
+localStorage.setItem('candidate-token' , payload.token)
 
 return {...state , token : payload.token , candidate: payload.candidat , isAuth : true }
 
-case LOGOUT_CANDIDATE : localStorage.removeItem('token')
+case LOGOUT_CANDIDATE : localStorage.removeItem('candidate-token')
 
 return {...state , token : null , candidate : null , isAuth : false}
 

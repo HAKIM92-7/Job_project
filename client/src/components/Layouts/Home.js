@@ -38,7 +38,7 @@ const Home = () => {
                 <li><a href="my-account.html">Login</a></li>
             </ul>
           </div> 
-          
+        
       </div>
      
 

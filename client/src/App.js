@@ -7,14 +7,29 @@ import RegisterCandidate from './components/Auth_Forms/LoginCandidate';
 import LoginCompany from './components/Auth_Forms/LoginCompany' ; 
 import LoginCandidate from './components/Auth_Forms/LoginCandidate'
 import Navbar from './components/Layouts/Navbar'
-
-
+import Alert from './components/Layouts/Alert';
+import { useEffect } from 'react';
+import {useDispatch} from 'react-redux'
+import { loadCandidate } from './redux/actions/auth_candidate_actions';
+import { loadCompany } from './redux/actions/auth_company_actions';
 function App() {
+
+const dispatch = useDispatch()
+  useEffect(() => {
+  
+  dispatch(loadCandidate())
+  dispatch(loadCompany())
+
+
+
+  }, [])
   return (
     <div className="App">
       <Navbar/>
+      <Alert/>
+      <Route exact path= "/" component={Home} />
       <Switch>
-<Route exact path= "/" component={Home} />
+
 <Route path="/register/company" component={RegisterCompany} />
 <Route path="/register/candidate" component={RegisterCandidate} />
 <Route path="/login/company" component={LoginCompany} />
