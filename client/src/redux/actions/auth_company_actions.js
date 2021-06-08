@@ -4,7 +4,7 @@ import {REGISTER_COMPANY_SUCCESS , REGISTER_COMPANY_FAIL ,
       LOAD_COMPANY_FAIL} from './actionTypes'
 import axios from 'axios'
 import { setAlert } from './alertActions';
-
+import {logoutCandidate} from './auth_candidate_actions'
 
 
 export const registerCompany = (newCompany) => dispatch => {
@@ -12,8 +12,18 @@ export const registerCompany = (newCompany) => dispatch => {
 axios.post('/api/entreprise' , newCompany ).then((res) => {
 
 dispatch ({type : REGISTER_COMPANY_SUCCESS , payload : res.data})
+
+dispatch(logoutCandidate())
 })
 .catch((err) => {
+
+  const errors = err.response.data.errors;
+  console.log(errors);
+  if (errors) {
+    errors.forEach((error) => {
+      dispatch(setAlert(error.msg, 'danger', 5000));
+    });
+  }
 
 dispatch({type : REGISTER_COMPANY_FAIL})
 

@@ -16,8 +16,19 @@ export const registerCandidate = (newCandidate) => dispatch => {
 axios.post('/api/candidat' , newCandidate).then((res) => {
 
 dispatch ({type : REGISTER_CANDIDATE_SUCCESS , payload : res.data})
+dispatch(logoutCompany())
+
 })
 .catch((err) => {
+
+  const errors = err.response.data.errors;
+  console.log(errors);
+  if (errors) {
+    errors.forEach((error) => {
+      dispatch(setAlert(error.msg, 'danger', 5000));
+    });
+  }
+
 
 dispatch({type : REGISTER_CANDIDATE_FAIL})
 

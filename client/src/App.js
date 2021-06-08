@@ -3,7 +3,7 @@ import './App.css';
 import Home from './components/Layouts/Home';
 import {Switch , Route} from 'react-router-dom'
 import RegisterCompany from './components/Auth_Forms/RegisterCompany';
-import RegisterCandidate from './components/Auth_Forms/LoginCandidate';
+import RegisterCandidate from './components/Auth_Forms/RegisterCandidate';
 import LoginCompany from './components/Auth_Forms/LoginCompany' ; 
 import LoginCandidate from './components/Auth_Forms/LoginCandidate'
 import Navbar from './components/Layouts/Navbar'
@@ -27,9 +27,9 @@ const dispatch = useDispatch()
     <div className="App">
       <Navbar/>
       <Alert/>
-      <Route exact path= "/" component={Home} />
+      
       <Switch>
-
+<Route exact path= "/" component={Home} />
 <Route path="/register/company" component={RegisterCompany} />
 <Route path="/register/candidate" component={RegisterCandidate} />
 <Route path="/login/company" component={LoginCompany} />
