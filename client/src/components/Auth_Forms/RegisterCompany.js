@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link , useHistory } from 'react-router-dom'
 import {useDispatch , useSelector} from 'react-redux'
 import { registerCompany } from '../../redux/actions/auth_company_actions'
 const RegisterCompany = () => {
 
-
+const history = useHistory()
 const dispatch = useDispatch()
 const [formData , setFormData] = useState ({
 
@@ -35,7 +35,7 @@ const onChange = (e) => {
 const onSubmit = (e) => {
 
     e.preventDefault() ;
-    
+    history.push('/dashboard/company')
     dispatch(registerCompany(formData))
     
     setFormData({
@@ -57,21 +57,19 @@ const onSubmit = (e) => {
 
 
     return (
-        <div>
-             <div class="content">
+        <div className="register">
+
+         
+             <div class="content"> 
+             <h1 style={{marginBottom:"20px"}}>Inscription Entreprise</h1>
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <img src="https://cdn.hipwallpaper.com/i/40/15/kWu2yJ.jpg" alt="Image" class="img-fluid"/>
-        </div>
-        <div class="col-md-6 contents">
-          <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="mb-4">
-              <h4>Sign Up</h4>
         
-            </div>
-            <form onSubmit={onSubmit}>
+        <div class="contents">
+          <div class="row justify-content-center">
+            <div style={{marginLeft:"65%", marginTop:"20px"}} class="col-md-8">
+             
+            <form  onSubmit={onSubmit}>
               <div class="form-group first">
                 <label for="nom">Nom</label>
                 <input type="text"  name="nom" value={formData.nom} onChange={onChange} class="form-control" id="fullname"/>
@@ -133,9 +131,9 @@ const onSubmit = (e) => {
 
               
               <div class="d-flex mb-5 align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Already have an account? <Link to="/login/company"> Login</Link> here  </span>
+                <label class="control control--checkbox mb-0"><span style={{color:"white"}} class="caption">Already have an account? <Link to="/login/company"> Login</Link> here  </span>
               
-                  <div class="control__indicator"></div>
+                  {/* <div class="control__indicator"></div> */}
                 </label>
                 
               </div>

@@ -77,13 +77,7 @@ try {
           return res.json({ 
               
             token  ,
-           candidat: {
-            nom : newCandidat.nom , 
-            email : newCandidat.email
-
-
-           }
-
+       newCandidat
         });
         }
       );

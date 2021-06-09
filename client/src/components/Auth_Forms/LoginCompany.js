@@ -3,19 +3,21 @@ import './LoginCompany.css'
 import {useDispatch , useSelector} from 'react-redux'
 import {loginCompany} from '../../redux/actions/auth_company_actions'
 import { logoutCandidate } from '../../redux/actions/auth_candidate_actions'
-import {Link} from 'react-router-dom'
+import {Link , useHistory} from 'react-router-dom'
+
 const LoginCompany = () => {
 
 const [email , setEmail] = useState('')
 const [password , setPassword] = useState('')
 
 const dispatch = useDispatch()
-
+const history = useHistory()
 const onSubmit =(e) => {
 
 e.preventDefault()
 
 dispatch(loginCompany({email,password}))
+history.push('/dashboard/company')
 
 if(localStorage.getItem('candidate-token')) {
   dispatch(logoutCandidate())
@@ -52,7 +54,7 @@ if(localStorage.getItem('candidate-token')) {
   <p>Si vous n'avez pas un compte <Link to="/register/company"> Inscrivez vous</Link></p>
 </form>
 
-<img style={{width : "50%" , height:"60vh"}} src="https://www.armytimes.com/resizer/M7nDeRXjePsT1Y2KsXspexCbOck=/1200x0/filters:quality(100)/cloudfront-us-east-1.images.arcpublishing.com/mco/FAFFC7SZDZFTTLDECOBOUU2GWA.jpg" alt="" />
+<img style={{width : "50%" , height:"63vh"}} src="https://www.armytimes.com/resizer/M7nDeRXjePsT1Y2KsXspexCbOck=/1200x0/filters:quality(100)/cloudfront-us-east-1.images.arcpublishing.com/mco/FAFFC7SZDZFTTLDECOBOUU2GWA.jpg" alt="" />
         </div>
         </div>
     )

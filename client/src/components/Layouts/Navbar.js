@@ -1,7 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {useSelector , useDispatch} from 'react-redux'
+import { logoutCandidate } from '../../redux/actions/auth_candidate_actions'
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const candidat = useSelector(state=> state.authCandidate.candidate)
     return (
         <div>
              <nav class="navbar navbar-default" role="navigation" data-spy="affix" data-offset-top="50">
@@ -21,18 +25,31 @@ const Navbar = () => {
                     </Link>
                     
                   </li>
-                  <li>
+                  {/* <li>
                   <Link class="active" style={{backgroundColor:"blue"}} to="/entreprises">
                     Entreprises
                     </Link>
                     
-                  </li>
+                  </li> */}
+{
+  candidat ? 
+                  <li>
+                  <Link class="active" style={{backgroundColor:"blue"}} to="/dashboard/candidate">
+                    Mon Profil
+                    </Link>
+                    
+                  </li> : ""
+
+}
                   </ul>
                 <ul class="nav navbar-nav navbar-right float-right">
                   {/* <li class="left"><a  class="active" href="post-job.html"><i class="ti-pencil-alt"></i> Post A Job</a></li> */}
 
                   <li class="right"><Link class="active" style={{backgroundColor:"blue"}}  to="/login/company"><i class="ti-lock"></i>Espace Entreprise</Link></li>
+                  
+                  {  candidat ? <li class="right"><Link class="active"  style={{backgroundColor:"blue"}} to="/" onClick={()=>dispatch( logoutCandidate() )}><i class="ti-lock"></i>LOGOUT</Link></li>:
                   <li class="right"><Link class="active"  style={{backgroundColor:"blue"}} to="/login/candidate"><i class="ti-lock"></i>Espace Candidat</Link></li>
+                  }
                 </ul>
               </div>                           
             </div>

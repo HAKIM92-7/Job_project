@@ -12,6 +12,8 @@ import { useEffect } from 'react';
 import {useDispatch} from 'react-redux'
 import { loadCandidate } from './redux/actions/auth_candidate_actions';
 import { loadCompany } from './redux/actions/auth_company_actions';
+import CompanyDash from './components/Layouts/CompanyDash';
+import CandidateDash from './components/Layouts/CandidateDash';
 function App() {
 
 const dispatch = useDispatch()
@@ -34,6 +36,8 @@ const dispatch = useDispatch()
 <Route path="/register/candidate" component={RegisterCandidate} />
 <Route path="/login/company" component={LoginCompany} />
 <Route path="/login/candidate" component={LoginCandidate} />
+<Route path="/dashboard/company" component={CompanyDash} />
+<Route path="/dashboard/candidate" component={CandidateDash} />
 
 </Switch>
     </div>

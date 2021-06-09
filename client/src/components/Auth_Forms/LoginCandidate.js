@@ -4,18 +4,23 @@ import {useDispatch , useSelector} from 'react-redux'
 import {loginCompany, logoutCompany} from '../../redux/actions/auth_company_actions'
 import { loginCandidate } from '../../redux/actions/auth_candidate_actions'
 import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 const LoginCompany = () => {
 
 const [email , setEmail] = useState('')
 const [password , setPassword] = useState('')
 
 const dispatch = useDispatch()
+const history = useHistory()
 
 const onSubmit =(e) => {
 
 e.preventDefault()
 
 dispatch(loginCandidate({email,password}))
+
+history.push('/dashboard/candidate')
+
 if(localStorage.getItem('company-token')) {
 
 
@@ -23,8 +28,6 @@ if(localStorage.getItem('company-token')) {
 }
 
 }
-
-
 
     return (
       <div>
@@ -53,7 +56,7 @@ if(localStorage.getItem('company-token')) {
   <p>Si vous n'avez pas un compte <Link to="/register/candidate"> Inscrivez vous</Link></p>
 </form>
 
-<img style={{width : "50%" , height :"60vh"}} src="https://www.jobsupportservices.com/wp-content/uploads/2017/07/background-JOBS.jpg" alt="" />
+<img style={{width : "50%" , height :"63vh"}} src="https://www.jobsupportservices.com/wp-content/uploads/2017/07/background-JOBS.jpg" alt="" />
         </div>
         </div>
     )

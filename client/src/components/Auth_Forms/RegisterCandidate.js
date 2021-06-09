@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {useDispatch , useSelector} from 'react-redux'
 import { registerCandidate } from '../../redux/actions/auth_candidate_actions'
-
+import {useHistory} from 'react-router-dom'
 const RegisterCandidate = () => {
 
 
 const dispatch = useDispatch()
+const history = useHistory()
 const [formData , setFormData] = useState ({
 
     nom :"", 
@@ -33,6 +34,8 @@ const onSubmit = (e) => {
     e.preventDefault() ;
     
     dispatch(registerCandidate(formData))
+
+    history.push('/dashboard/candidate')
     
     // setFormData({
     //     nom : "" ,
@@ -51,20 +54,17 @@ const onSubmit = (e) => {
 
 
     return (
-        <div>
+        <div className="register">
              <div class="content">
+
+               <h1 style={{marginBottom:"20px"}}>Inscription Candidat</h1>
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <img src="https://cdn.hipwallpaper.com/i/40/15/kWu2yJ.jpg" alt="Image" class="img-fluid"/>
-        </div>
-        <div class="col-md-6 contents">
+      
+        <div class="contents">
           <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="mb-4">
-              <h4>Sign Up</h4>
-        
-            </div>
+            <div style={{marginLeft:"65%", marginTop : "20px"}} class="col-md-8">
+            
             <form onSubmit={onSubmit}>
               <div class="form-group first">
                 <label for="nom">Nom </label>
@@ -110,9 +110,8 @@ const onSubmit = (e) => {
 
 
               <div class="d-flex mb-5 align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Already have an account? <Link to="/login/candidate"> Login</Link> here  </span>
+                <label class="control control--checkbox mb-0"><span style={{color:"white"}} class="caption">Already have an account? <Link to="/login/candidate"> Login</Link> here  </span>
               
-                  <div class="control__indicator"></div>
                 </label>
                 
               </div>
